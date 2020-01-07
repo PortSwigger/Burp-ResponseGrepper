@@ -1,3 +1,23 @@
-<p>Burp extension to auto-extract values from HTTP Responses based on a Regular Expression. Extracts the match and any named or unnamed groups. A bit like Burp Intruder's &quot;Grep - Extract&quot; option, but should work on any Responses.</p>
+<p>This extension will auto-extract and display values from HTTP Response
+bodies based on a Regular Expression, similarly to the &quot;Grep - Extract&quot;
+feature in Burp Intruder but will work on any Responses. This can be
+helpful when trying to perform manual reconnaissance or building an
+injection in Burp Repeater, without having to scroll through multiple
+matches in the Response search results.</p>
 
-<p>The regex is defined per-request. It will extract the full match, and also highlight and extract any groups defined in the regex. Named groups can also be used for more detail in the regex.</p>
+<p>The Regular Expression is defined per-request. It will extract the full
+match, and also highlight and extract any groups defined in the regex,
+and display them in a list on a new tab. Named groups can also be used
+for more detail in the regex.</p>
+
+<p>Set the Regular Expression in the tab, click &quot;update&quot;, hit &quot;enter&quot;, or
+run the request to apply it. Matching subgroups are highlighted in the
+match and also extracted. For example, to extract the value between 2
+DIV tags:</p>
+
+<code>&lt;div class='test'&gt;(.*?)&lt;/div&gt;</code>
+
+<p>Named groups can also be used INSTEAD (don't mix named and unnamed). For
+example:</p>
+
+<code>&lt;div class='test'&gt;(?P&lt;tag&gt;.*?)&lt;/div&gt;</code>
