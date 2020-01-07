@@ -1,0 +1,12 @@
+Uuid: 665178d3bf494019b3e8fe53a133528b
+ExtensionType: 2
+Name: Response Grepper
+RepoName: response-grepper
+ScreenVersion: 1.3
+SerialVersion: 2
+MinPlatformVersion: 0
+ProOnly: False
+Author: b4dpxl
+ShortDescription: Auto-extract values from HTTP responses based on a Regular Expression.
+EntryPoint: ResponseGrepper.py
+BuildCommand: 
