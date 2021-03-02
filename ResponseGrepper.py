@@ -9,10 +9,11 @@ History:
 1.2 - Replaced HTMLEditorKit with text/html JTextPane, tweaked styles
 1.3 - RegEx updatable by pressing Enter
 1.4 - Support for dark themes
+1.4.1 - Updated dark theme detection
 """
 __author__ = "b4dpxl"
 __license__ = "GPL"
-__version__ = "1.4"
+__version__ = "1.4.1"
 
 import re
 import sys
@@ -107,7 +108,7 @@ class BurpExtender(IBurpExtender, IMessageEditorTabFactory):
                 if config:
                     try:
                         theme = config.get('user_options', {}).get('display', {}).get('user_interface', {}).get('look_and_feel', '')
-                        self._dark_mode = theme.lower() in ['darcula']
+                        self._dark_mode = theme.lower() in ['darcula', 'dark']
                         print("Dark mode = " + str(self._dark_mode))
                     except (AttributeError, TypeError):
                         print("Unable to load config")
