@@ -2,8 +2,8 @@ Uuid: 665178d3bf494019b3e8fe53a133528b
 ExtensionType: 2
 Name: Response Grepper
 RepoName: response-grepper
-ScreenVersion: 1.4
-SerialVersion: 4
+ScreenVersion: 1.4.1
+SerialVersion: 5
 MinPlatformVersion: 0
 ProOnly: False
 Author: b4dpxl
