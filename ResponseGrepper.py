@@ -92,26 +92,16 @@ class BurpExtender(IBurpExtender, IMessageEditorTabFactory):
         return ResponseGrepperTab(self, controller, editable)
 
     def _checkTheme(self):
-        config_dir = os.path.expandvars("%APPDATA%\\BurpSuite\\")
-        if not os.path.exists(config_dir):
-            config_dir = os.path.expanduser("~/.BurpSuite")
+        laf = swing.UIManager.getLookAndFeel()
+        try:
+            self._dark_mode = laf.isDark()
 
-        if os.path.exists(config_dir):
-            cf = 'UserConfig{}.json'.format('Pro' if 'professional' in self._callbacks.getBurpVersion()[0].lower() else 'Community')
-            print("Looking for config file {}".format(cf))
-            config_file = os.path.join(config_dir, cf)
-
-            if os.path.exists(config_file):
-                with open(config_file, 'r') as f:
-                    config = json.load(f)
+        except:
+            print("Unable to detect the mode with isDark(), trying fallback")
+            # if it's darcula (for old versions of Burp) or the theme name contains "dark".
+            self._dark_mode = bool(re.search(r"""\bdark\b""", theme)) or "darcula" in laf.getID().lower()
             
-                if config:
-                    try:
-                        theme = config.get('user_options', {}).get('display', {}).get('user_interface', {}).get('look_and_feel', '')
-                        self._dark_mode = theme.lower() in ['darcula', 'dark']
-                        print("Dark mode = " + str(self._dark_mode))
-                    except (AttributeError, TypeError):
-                        print("Unable to load config")
+        print("""Theme: "{}"; Dark mode? {}""".format(laf.getID(), str(self._dark_mode)))
         
 
 class ResponseGrepperTab(IMessageEditorTab):
