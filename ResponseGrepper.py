@@ -172,6 +172,7 @@ class GrepPanel(ITextEditor):
         box = swing.Box.createHorizontalBox()
         self.results = swing.JTextPane()  # JEditorPane()
         self.results.setContentType("text/html")
+        self.results.putClientProperty("html.disable", None)
         self.results.setEditable(False)
         self._render("<em>Loading...</em>")
 
